@@ -1,0 +1,30 @@
+
+@import url("https://fonts.googleapis.com/css?family=Gothic+A1");
+
+:root{
+  --brand-blue: #637EF7;
+  --shadow-blue: #506be5;
+  --background-blue: #F7F8FC;
+  --main-font: 'Gothic A1', sans-serif;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: var(--main-font);
+}
+
+#container{
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+#left-box{
+  width: 15%;
+}
+
+#right-box{
+  flex: 1;
+  background-color: var(--background-blue);
+}

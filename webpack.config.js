@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
     entry: {
-        WSTester: './static/components/WSTester.jsx'
+        Dashboard: './static/components/dashboard/Dashboard.jsx'
     },
     output: {
         path: path.resolve(__dirname, './static/bundles'),
