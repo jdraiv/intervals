@@ -86,11 +86,9 @@ export default class TimeTracker extends React.Component {
 
   render() {
     return (
-      <div id="time-tracker">
-        <div id="tracker-right-box">
-          <h5 id="time-showcase">{this.state.timeStr}</h5>
-          <IOSwitch clickEvent={this.switchEvent} switchState={this.state.switchState} />
-        </div>
+      <div id="tracker-right-box">
+        <h5 id="time-showcase">{this.state.timeStr}</h5>
+        <IOSwitch clickEvent={this.switchEvent} switchState={this.state.switchState} />
       </div>
     )
   }

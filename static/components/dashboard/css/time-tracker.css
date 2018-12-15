@@ -1,16 +1,5 @@
 
 
-#time-tracker{
-  display: flex;
-  width: 90%;
-  height: auto;
-  margin: auto;
-  padding-top: 1%;
-  padding-bottom: 1%;
-  margin-top: 2.5%;
-  background-color: white;
-  border-radius: 2px;
-}
 
 #io-btn{
   font-size: 1em;
