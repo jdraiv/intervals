@@ -5,7 +5,7 @@
   --brand-blue: #637EF7;
   --shadow-blue: #506be5;
   --background-blue: #F7F8FC;
-  --border-grey: #F1F3F5;
+  --border-grey: #dcdfe2;
   --main-font: 'Gothic A1', sans-serif;
 }
 
@@ -38,6 +38,38 @@
   padding-top: 1%;
   padding-bottom: 1%;
   margin-top: 2.5%;
-  background-color: white;
   border-radius: 2px;
+  background-color: white;
+}
+
+/* Modals CSS */
+
+.modal{
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.1);
+  transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.modal-content{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background-color: white;
+  transform: translate(-50%, -50%);
+  width: 45vh;
+  height: auto;
+  border-radius: 5px;
+}
+
+.modal-active{
+  opacity: 1;
+  visibility: visible;
+  transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
 }
