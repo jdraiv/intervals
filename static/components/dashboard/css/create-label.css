@@ -29,21 +29,26 @@
   width: 90%;
   justify-content: center;
   margin: auto;
-  margin-top: 2vh;
   margin-bottom: 2vh;
 }
 
 .create-label-menu .menu-header{
   font-size: 1.1em;
+  color: #888;
+  letter-spacing: 1px;
+}
+
+.create-label-menu .close-btn-container{
+  text-align: right;
 }
 
 .create-label-menu .close-btn{
-  position: absolute;
-  right: 0;
-  font-size: 1.1em;
+  color: #888;
+  font-size: 1.2em;
   margin-right: 5%;
-  background-color: transparent;
+  margin-top: 5%;
   border: transparent;
+  background-color: transparent;
 }
 
 .create-label-menu .close-btn:hover{
@@ -68,6 +73,10 @@
 }
 
 .create-label-menu #label-name-input{
+  border-color: var(--border-grey);
+}
+
+.create-label-menu #label-name-input:focus{
   border-color: var(--brand-blue);
 }
 

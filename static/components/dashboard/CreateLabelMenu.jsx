@@ -51,9 +51,11 @@ export default class CreateLabelMenu extends React.Component {
       <div className={"modal " + this.state.menuState}>
         <div className="modal-content">
           <div className="create-label-menu">
+            <div className="close-btn-container">
+              <button className="close-btn" onClick={this.menuController}><i class="fas fa-times"></i></button>
+            </div>
             <div className="header-container">
               <h3 className="menu-header">Create label</h3>
-              <button className="close-btn" onClick={this.menuController}><i class="fas fa-times"></i></button>
             </div>
 
             <input id="label-name-input" placeholder="Name"></input>

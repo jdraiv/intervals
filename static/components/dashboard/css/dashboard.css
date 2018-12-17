@@ -5,7 +5,7 @@
   --brand-blue: #637EF7;
   --shadow-blue: #506be5;
   --background-blue: #F7F8FC;
-  --border-grey: #dcdfe2;
+  --border-grey: #dcdcdc;;
   --main-font: 'Gothic A1', sans-serif;
 }
 
@@ -13,6 +13,11 @@
   padding: 0;
   margin: 0;
   font-family: var(--main-font);
+}
+
+body{
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
 }
 
 #container{
