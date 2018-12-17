@@ -34,7 +34,7 @@
 
 .create-label-menu .menu-header{
   font-size: 1.1em;
-  color: #888;
+  color: var(--text-grey);
   letter-spacing: 1px;
 }
 
@@ -43,7 +43,7 @@
 }
 
 .create-label-menu .close-btn{
-  color: #888;
+  color: var(--text-grey);
   font-size: 1.2em;
   margin-right: 5%;
   margin-top: 5%;

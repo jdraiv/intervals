@@ -6,6 +6,7 @@
   --shadow-blue: #506be5;
   --background-blue: #F7F8FC;
   --border-grey: #dcdcdc;;
+  --text-grey: #9194A1;
   --main-font: 'Gothic A1', sans-serif;
 }
 
@@ -13,6 +14,7 @@
   padding: 0;
   margin: 0;
   font-family: var(--main-font);
+  text-rendering: optimizeLegibility;
 }
 
 body{
