@@ -3,7 +3,7 @@
 # RUN RUN
 
 from sanic import Sanic
-from sanic.response import json, html
+from sanic.response import json, html, text
 from sanic.websocket import WebSocketProtocol
 
 # Templates
@@ -14,12 +14,23 @@ from pymongo import MongoClient
 
 from secret import DB_URL
 
-env = Environment(loader=PackageLoader('main', 'templates'))
+# Importing blueprints
+
+views_env = Environment(loader=PackageLoader('main', 'templates'))
 app = Sanic()
 
+# Static files setup
 app.static('/static', './static')
 
+# Database setup
 mongo_app = MongoClient(DB_URL)
+
+# Blueprints
+from blueprints.authentication.auth import auth_module
+
+# Registering blueprints
+app.blueprint(auth_module)
+
 
 @app.route('/')
 async def homepage(request):
@@ -27,20 +38,10 @@ async def homepage(request):
 
 @app.route('/dashboard')
 async def tester(request):
-    template = env.get_template('dashboard.html')
+    template = views_env.get_template('dashboard.html')
     html_content = template.render()
 
     return html(html_content)
-
-# Login user
-@app.route('/login')
-async def login(request):
-    return 'Login'
-
-# Register user
-@app.post('/register')
-async def register_user(request):
-    return json({"status": "success"})
 
 @app.websocket('/time_tracker')
 async def dashboard(request, ws):
@@ -49,4 +50,4 @@ async def dashboard(request, ws):
         print('Received: ' + data)
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5000, protocol=WebSocketProtocol)
+    app.run(host="0.0.0.0", port=5000, protocol=WebSocketProtocol, debug=True)

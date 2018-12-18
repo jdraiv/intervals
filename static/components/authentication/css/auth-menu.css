@@ -1,0 +1,83 @@
+
+body{
+  font-family: var(--main-font);
+}
+
+.auth-menu-container{
+  display: flex;
+  flex-direction: column;
+}
+
+#logo-container{
+  width: 100vh;
+  height: 10vh;
+}
+
+#menu-options-container{
+  display: flex;
+  width: 100%;
+  height: 12vh;
+}
+
+.menu-option-btn{
+  width: 50%;
+  font-size: 1.2em;
+  text-align: center;
+  background-color: transparent;
+  border: transparent;
+}
+
+.menu-option-btn:hover{
+  cursor: pointer;
+}
+
+#inputs-container{
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: auto;
+  margin-top: 5%;
+}
+
+#inputs-container input{
+  padding-top: 3%;
+  padding-bottom: 3%;
+  padding-left: 5%;
+  font-size: 1em;
+  border-radius: 3px;
+  border: solid;
+  border-width: 1px;
+  border-color: var(--border-grey);
+  font-family: var(--main-font);
+  margin-top: 3%;
+  margin-bottom: 3%;
+}
+
+#inputs-container input:focus{
+  border-color: var(--brand-blue);
+}
+
+#inputs-container label{
+  letter-spacing: 1px;
+}
+
+#btn-container{
+  width: 70%;
+  margin: auto;
+  text-align: center;
+  margin-top: 10%;
+}
+
+#btn-container button{
+  background-color: var(--brand-blue);
+  border: transparent;
+  width: 80%;
+  color: white;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  border-radius: 3px;
+}
+
+button:hover{
+  cursor: pointer;
+}
