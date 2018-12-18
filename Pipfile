@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 sanic = "*"
 "jinja2" = "*"
+pymongo = "*"
 
 [dev-packages]
 
