@@ -1,15 +1,56 @@
 
+class MenuHeader extends React.Component {
+  // Props = [menuHeader, helpText, textRedirect, cMenu, menuName, menuChange]
+  constructor(props) {
+    super(props);
+    this.setDisplay = this.setDisplay.bind(this);
+  }
+
+  setDisplay() {
+    let display = "none";
+
+    if (this.props.cMenu == this.props.menuName) {
+      display = "flex";
+    }
+
+    return display;
+  }
+
+
+  render() {
+    let style = {
+      display: this.setDisplay()
+    }
+    return (
+      <div className="header-container animated bounceInLeft" style={style}>
+        <h3 className="header">{this.props.menuHeader}</h3>
+        <p className="header-help-text">{this.props.helpText} <span onClick={this.props.menuChange} className="menu-switch-text">{this.props.textRedirect}</span></p>
+      </div>
+    )
+  }
+}
 
 // This menu can either be for login or sign up. Following the DRY principle.
 export default class AuthMenu extends React.Component {
-  // Props = [routeEndpoint, menu (it can be login or sign up)]
   constructor(props) {
     super(props);
 
-    this.state = {username: "", password: ""}
+    this.state = {username: "", password: "", cMenu: "signup"}
 
     this.onClick = this.onClick.bind(this);
     this.inputChange =  this.inputChange.bind(this);
+    this.changeMenu =  this.changeMenu.bind(this);
+  }
+
+  changeMenu() {
+    let newMenu = "signup";
+
+    if (this.state.cMenu == "signup") {
+      newMenu = "login"
+    }
+    this.setState({cMenu: newMenu});
+
+    console.log(this.state.cMenu);
   }
 
   inputChange(event) {
@@ -20,9 +61,10 @@ export default class AuthMenu extends React.Component {
   }
 
   onClick(event) {
+    let submitRoute = this.state.cMenu;
     event.preventDefault();
 
-    fetch("/auth", {
+    fetch(submitRoute, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -44,10 +86,8 @@ export default class AuthMenu extends React.Component {
           <h1>Intervals</h1>
         </div>
 
-        <div id="menu-options-container">
-          <button className="menu-option-btn">Login</button>
-          <button className="menu-option-btn">Sign Up</button>
-        </div>
+        <MenuHeader menuHeader="Create an account" helpText="Already have an account?" textRedirect="Sign up here" cMenu={this.state.cMenu} menuName="signup" menuChange={this.changeMenu}/>
+        <MenuHeader menuHeader="Login" helpText="Don't have an account?" textRedirect="Create an account here" cMenu={this.state.cMenu} menuName="login" menuChange={this.changeMenu}/>
 
         <div id="inputs-container">
           <label htmlFor="username">Username</label>
@@ -57,15 +97,12 @@ export default class AuthMenu extends React.Component {
         </div>
 
         <div id="btn-container">
-          <button type="button" onClick={this.onClick}><i className="fas fa-arrow-right fa-5x"></i></button>
+          <button type="button" onClick={this.onClick} id="submit-btn"><i className="fas fa-arrow-right fa-5x"></i></button>
         </div>
 
       </div>
     )
   }
 }
-
-
-
 
 // No hay nada que pueda perder, que no pueda ser, que no pueda amar, que pueda soñar!

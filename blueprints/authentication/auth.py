@@ -2,9 +2,6 @@
 from sanic.response import json, html, text
 from sanic import Blueprint
 
-from sanic_jwt import Initialize, exceptions, inject_user
-from sanic_jwt.decorators import protected
-
 # Local directory imports
 from .User import UserModel
 
@@ -12,6 +9,21 @@ from .User import UserModel
 from main import app, views_env
 
 auth_module = Blueprint('auth_blueprint')
+
+
+@auth_module.route('/login', methods=['POST'])
+async def log_user(request):
+    username = request.json.get('username')
+    password = request.json.get('password')
+
+    return json({"username": username})
+
+@auth_module.route('/signup', methods=['POST'])
+async def register(request):
+    username = request.json.get('username')
+    password = request.json.get('password')
+
+    return json({"username": username})
 
 # View routes
 @auth_module.route('/get_started')

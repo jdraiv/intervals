@@ -11,23 +11,34 @@ body{
 #logo-container{
   width: 100vh;
   height: 10vh;
+  background-color: blue;
 }
 
-#menu-options-container{
+.header-container{
   display: flex;
-  width: 100%;
-  height: 12vh;
+  flex-direction: column;
+  width: 90%;
+  margin: auto;
+  height: 22vh;
+  justify-content: flex-end;
 }
 
-.menu-option-btn{
-  width: 50%;
-  font-size: 1.2em;
-  text-align: center;
-  background-color: transparent;
-  border: transparent;
+.header{
+  color: var(--text-black);
+  font-size: 1.8em;
 }
 
-.menu-option-btn:hover{
+.header-help-text {
+  font-size: 0.8em;
+  margin-top: 2%;
+}
+
+.menu-switch-text{
+  font-size: 0.8em;
+  color: var(--brand-blue);
+}
+
+.menu-switch-text:hover{
   cursor: pointer;
 }
 
@@ -49,8 +60,8 @@ body{
   border-width: 1px;
   border-color: var(--border-grey);
   font-family: var(--main-font);
-  margin-top: 3%;
-  margin-bottom: 3%;
+  margin-top: 4%;
+  margin-bottom: 4%;
 }
 
 #inputs-container input:focus{
@@ -64,11 +75,11 @@ body{
 #btn-container{
   width: 70%;
   margin: auto;
-  text-align: center;
   margin-top: 10%;
+  text-align: center;
 }
 
-#btn-container button{
+#submit-btn{
   background-color: var(--brand-blue);
   border: transparent;
   width: 80%;
@@ -78,6 +89,6 @@ body{
   border-radius: 3px;
 }
 
-button:hover{
+#submit-btn:hover{
   cursor: pointer;
 }
