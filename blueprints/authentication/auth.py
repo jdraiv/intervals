@@ -59,7 +59,7 @@ async def auth_view(request):
 @auth_module.route('/get_cookies')
 @jwt_required()
 async def get_cookie(request):
-    test_cookie = request.cookies.get('intervals_rtk')
+    test_cookie = request.cookies.get('intervals_jwt')
     return text("Test cookie set to: {}".format(test_cookie))
 
 @auth_module.route('/delete_cookies')
