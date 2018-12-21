@@ -8,6 +8,8 @@ sanic = "*"
 "jinja2" = "*"
 pymongo = "*"
 pyjwt = "*"
+passlib = "*"
+cryptography = "*"
 
 [dev-packages]
 

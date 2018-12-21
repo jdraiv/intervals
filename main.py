@@ -14,6 +14,14 @@ from pymongo import MongoClient
 
 from secret import DB_URL
 
+from passlib.context import CryptContext
+
+pwd_context = CryptContext(
+        schemes=["pbkdf2_sha256"],
+        default="pbkdf2_sha256",
+        pbkdf2_sha256__default_rounds=30000
+)
+
 # Importing blueprints
 
 views_env = Environment(loader=PackageLoader('main', 'templates'))
@@ -24,6 +32,7 @@ app.static('/static', './static')
 
 # Database setup
 mongo_app = MongoClient(DB_URL)
+mongo_db =  mongo_app['intervals']
 
 # Blueprints
 from blueprints.authentication.auth import auth_module
