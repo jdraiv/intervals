@@ -24,21 +24,15 @@ def jwt_required():
             # If the JWT is expired, the application generates a new access token using the refresh_token
 
             if jwt_cookie == None:
-                return json({'status': 'Not authorized'})
+                return redirect('/')
             else:
                 # tokens
                 decoded_jwt = TokenDecoder.decode_jwt(jwt_cookie)
                 decoded_rtk = TokenDecoder.decode_rtk(token_key, refresh_token)
 
-                # Check if the user matches
-                print(decoded_jwt)
-                print(decoded_rtk)
-
                 # If both tokens belong to the same user, we then check the expiration time of the JWT
                 if TokenValidator.matching_user(decoded_jwt, decoded_rtk):
-                    print("Matching user")
                     if TokenValidator.token_update_needed(decoded_jwt, decoded_rtk):
-                        print("Access token has been updated")
                         # We can generate a new JWT. Setting up new cookies for the customer.
                         response = redirect('/dashboard')
                         response.cookies['intervals_jwt'] = TokenGenerator.generate_jwt(decoded_jwt['username'])

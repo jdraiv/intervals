@@ -76,7 +76,7 @@ async def auth_view(request):
     html_content = template.render()
     return html(html_content)
 
-@auth_module.route('/delete_cookies')
+@auth_module.route('/logout')
 async def del_cookie(request):
     response = text("Cookies deleted")
     del response.cookies['intervals_jwt']
