@@ -13,6 +13,6 @@ class CanLogin:
         # Verifies if the credentials from a user are correct
         if user_info != None:
             if pwd_context.verify(self.password, user_info['password']):
-                return {'status': 'success', 'message': 'Valid credentials', 'user_key': user_info['user_key']}
+                return {'status': 'success', 'message': 'Valid credentials'}
             return {'status': 'error', 'message': 'Invalid username or password'}
         return {'status': 'error', 'message': 'That user does not exist'}
