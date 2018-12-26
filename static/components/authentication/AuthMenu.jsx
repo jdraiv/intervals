@@ -74,6 +74,10 @@ export default class AuthMenu extends React.Component {
     }).then((response) => {
       return response.json()
     }).then((data) => {
+      if (data['status'] == "success") {
+        // Redirecting user to the dashboard
+        window.location.replace('/dashboard')
+      }
       console.log(data);
     })
   }
