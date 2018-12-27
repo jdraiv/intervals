@@ -1,6 +1,6 @@
 
-import TimeTracker from './TimeTracker.jsx'
-import LabelsController from './Labels.jsx'
+import Tracker from './Tracker.jsx'
+// import LabelsController from './Labels.jsx'
 import Navbar from './Navbar.jsx'
 
 class Dashboard extends React.Component {
@@ -14,10 +14,7 @@ class Dashboard extends React.Component {
         <Navbar />
       </div>,
       <div id="right-box">
-        <div id="time-tracker">
-          <LabelsController />
-          <TimeTracker />
-        </div>
+        <Tracker />
       </div>
     ]
   }

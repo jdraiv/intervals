@@ -20,6 +20,7 @@ class RegUser:
             'username': self.username,
             'password': pwd_context.encrypt(self.password),
             'timestamps': [],
+            'labels': [{"name": "Untracked", "color": "#ffc168"}]
             }
             # We store the user data
             mongo_db.users.insert_one(user_structure)

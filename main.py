@@ -37,9 +37,11 @@ mongo_db =  mongo_app['intervals']
 
 # Blueprints
 from blueprints.authentication.auth import auth_module
+from blueprints.dashboard.dashboard import dashboard_module
 
 # Registering blueprints
 app.blueprint(auth_module)
+app.blueprint(dashboard_module)
 
 # Imports after blueprints
 from blueprints.authentication.decorators import jwt_required

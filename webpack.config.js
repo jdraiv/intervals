@@ -2,8 +2,8 @@ const path = require('path');
 
 module.exports = {
     entry: {
-        // Dashboard: './static/components/dashboard/Dashboard.jsx',
-        Authentication: './static/components/authentication/Authentication.jsx'
+        Dashboard: './static/components/dashboard/Dashboard.jsx',
+        //Authentication: './static/components/authentication/Authentication.jsx'
     },
     output: {
         path: path.resolve(__dirname, './static/bundles'),
