@@ -1,0 +1,116 @@
+
+#label-maker-btn{
+  font-size: 1.3em;
+  font-family: var(--main-font);
+  background-color: white;
+  color: var(--text-grey);
+  font-weight: bold;
+  letter-spacing: 1px;
+  border: none;
+}
+
+#label-maker-btn:hover{
+  cursor: pointer;
+  color: var(--brand-blue);
+}
+
+#close-btn-container{
+  width: 95%;
+  margin: auto;
+  text-align: right;
+}
+
+.close-btn{
+  font-size: 1.2em;
+  padding: 2%;
+  background-color: transparent;
+  color: var(--text-black);
+  border: none;
+}
+
+.close-btn:hover{
+  cursor: pointer;
+  color: var(--brand-blue);
+}
+
+#label-maker-header{
+  width: 95%;
+  margin: auto;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  color: var(--text-black);
+  text-align: center;
+  font-size: 0.7em;
+}
+
+#label-maker-input{
+  width: 90%;
+  margin-left: 5%;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  padding-left: 5%;
+  border-style: solid;
+  border-radius: 3px;
+  font-size: 1em;
+}
+
+#label-maker-input:focus{
+  border-color: var(--brand-blue);
+}
+
+#colors-container{
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  margin: auto;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  flex-wrap: wrap;
+}
+
+#color-btn{
+  display: block;
+  width: 7vh;
+  height: 5vh;
+  margin: 1%;
+  border: none;
+  border-radius: 3px;
+}
+
+#color-btn:hover{
+  cursor: pointer;
+}
+
+#create-btn-container{
+  width: 90%;
+  text-align: center;
+  margin: auto;
+}
+
+#create-btn{
+  font-size: 1.3em;
+  width: 50%;
+  border: none;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  border-radius: 3px;
+  margin-top: 2%;
+  margin-bottom: 7%;
+}
+
+.create-btn-inactive{
+  pointer-events: none;
+}
+
+.create-btn-active{
+  background-color: var(--brand-blue);
+  box-shadow: 0px 2px 0px var(--shadow-blue);
+  color: white;
+}
+
+.create-btn-active:hover{
+  cursor: pointer;
+  background-color: var(--shadow-blue);
+}
+
+

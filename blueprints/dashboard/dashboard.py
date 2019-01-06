@@ -7,7 +7,8 @@ from sanic.response import json, text
 from blueprints.authentication.decorators import jwt_required
 from blueprints.authentication.helpers.token_decoder import TokenDecoder
 
-from main import mongo_db
+from .helpers.labels import LabelsHelpers
+from helpers.custom_messages import json_message
 
 dashboard_module = Blueprint('timestamps_module')
 
@@ -35,12 +36,30 @@ async def last_timestamp(request):
 @dashboard_module.route('/create_label', methods=['POST'])
 @jwt_required()
 async def create_label(request):
-    user_identity = TokenDecoder.decode_jwt(request.cookies.get('intervals_jwt'))
+    user_identity = TokenDecoder.decode_jwt(request.cookies.get('intervals_jwt'))['username']
 
-    label = request.json.get('label')
+    label = request.json.get('name')
     color = request.json.get('color')
     print(label)
     print(color)
 
-    response = json({'status': 'success'})
-    return response
+    process_info = LabelsHelpers.store_label(user_identity, label, color)
+
+    if process_info['success']:
+        return json_message("success", "Label created")
+    else:
+        return json_message("error", process_info['message'])
+
+@dashboard_module.route('/get_labels', methods=['GET'])
+@jwt_required()
+async def get_labels(request):
+    user_identity = TokenDecoder.decode_jwt(request.cookies.get('intervals_jwt'))['username']
+
+    process_info = LabelsHelpers.get_labels(user_identity)
+
+    if process_info['success']:
+        return json_message(status="success", data=process_info['data'])
+    else:
+        return json_message(status="error", message="Unknown error")
+
+

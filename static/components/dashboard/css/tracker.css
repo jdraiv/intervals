@@ -1,0 +1,9 @@
+
+#tracker{
+  display: flex;
+  width: 95%;
+  margin: auto;
+  margin-top: 2.5%;
+  margin-bottom: 2.5%;
+  background-color: white;
+}

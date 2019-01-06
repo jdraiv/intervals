@@ -1,4 +1,5 @@
 
+/*
 // Keeps track of the seconds 
 export default class TimeController extends React.Component {
   // Props = [label, tracking]
@@ -56,3 +57,4 @@ export default class TimeController extends React.Component {
     )
   }
 }
+*/

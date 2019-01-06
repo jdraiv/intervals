@@ -1,5 +1,5 @@
 
-@import url("https://fonts.googleapis.com/css?family=Gothic+A1");
+@import url("https://fonts.googleapis.com/css?family=Karla");
 
 :root{
   --brand-blue: #637EF7;
@@ -7,6 +7,6 @@
   --background-blue: #F7F8FC;
   --border-grey: #dcdcdc;;
   --text-grey: #9194A1;
-  --text-black: #2C2D30;
-  --main-font: 'Gothic A1', sans-serif;
+  --text-black: #292929;
+  --main-font: 'Karla', sans-serif;
 }
