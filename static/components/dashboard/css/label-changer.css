@@ -1,5 +1,19 @@
 
+#label-change-btn{
+  font-size: 1.2em;
+  padding-top: 0.5%;
+  padding-bottom: 0.5%;
+  padding-left: 2%;
+  padding-right: 2%;
+  background-color: var(--brand-blue);
+  color: white;
+  border: none;
+  border-radius: 3px;
+}
 
+#label-change-btn{
+  cursor: pointer;
+}
 
 #label-change-header{
   width: 95%;

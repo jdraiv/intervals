@@ -1,9 +1,15 @@
 
 #tracker{
   display: flex;
+  flex-direction: row;
   width: 95%;
   margin: auto;
   margin-top: 2.5%;
   margin-bottom: 2.5%;
   background-color: white;
+}
+
+#tracker-btns-container{
+  display: flex;
+  flex-direction: row;
 }

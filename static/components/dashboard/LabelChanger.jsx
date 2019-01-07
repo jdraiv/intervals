@@ -1,4 +1,14 @@
 
+// Initial menu button
+class MenuBtn extends React.Component {
+  // clickEvent, currentLabel
+  render() {
+    return (
+      <button id="label-change-btn" onClick={this.props.clickEvent}>{this.props.currentLabel}</button>
+    )
+  }
+}
+
 class CloseBtn extends React.Component {
   // Props = clickEvent
   render() {
@@ -85,10 +95,10 @@ export default class LabelChanger extends React.Component {
   
   render() {
     return [
-      <button onClick={this.showOrHideEvent}>{this.props.currentLabel}</button>,
+      <MenuBtn clickEvent={this.showOrHideEvent} currentLabel={this.props.currentLabel}/>,
       <div className={"modal " + this.state.modalStatus}>
         <div className="modal-content">
-          
+  
           <div id="label-change-menu">
             <CloseBtn clickEvent={this.showOrHideEvent} />
             <MenuHeader headerText="Choose Label" />

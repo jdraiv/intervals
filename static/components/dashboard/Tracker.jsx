@@ -53,8 +53,13 @@ export default class Tracker extends React.Component {
   render() {
     return (
       <div id="tracker">
-        <LabelChanger currentLabel={this.state.currentLabel} labels={this.state.labels} changeLabelEvent={this.changeLabel}/>
-        <LabelMaker createEvent={this.createLabel}/>
+        <div id="tracker-btns-container">
+          <LabelChanger currentLabel={this.state.currentLabel} labels={this.state.labels} changeLabelEvent={this.changeLabel}/>
+          <LabelMaker createEvent={this.createLabel}/>
+        </div>
+
+        <div id="timer-container">
+        </div>
       </div>
     )
   }
