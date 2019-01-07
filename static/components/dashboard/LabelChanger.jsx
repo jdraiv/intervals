@@ -1,20 +1,47 @@
 
-class LabelItem extends React.Component {
-  // Props = name, color, clickEvent
+class CloseBtn extends React.Component {
+  // Props = clickEvent
   render() {
     return (
+      <div id="close-btn-container">
+        <button className="close-btn" onClick={this.props.clickEvent}>
+          <i className="fas fa-times"></i>
+        </button>
+      </div>
+    )
+  }
+}
+
+class MenuHeader extends React.Component {
+  // Props = headerText
+  render() {
+    return (
+      <div id="label-change-header">
+        <h1 className="header">{this.props.headerText}</h1>
+      </div>
+    )
+  }
+}
+
+class LabelItem extends React.Component {
+  // Props = name, color, clickEvent, internalClickEvent
+  render() {
+    let style = {
+      backgroundColor: this.props.color
+    }
+    return (
       <div>
-        <button value={this.props.name} onClick={this.props.clickEvent}>{this.props.name}</button>
+        <button className="label-item" value={this.props.name} style={style} onClick={this.props.clickEvent}>{this.props.name}</button>
       </div>
     )
   }
 }
 
 class LabelsContainer extends React.Component {
-  // Props = labels, clickEvent
+  // Props = labels, clickEvent, 
   render() {
     let labels = this.props.labels.map((label) =>
-      <LabelItem name={label['name']} clickEvent={this.props.clickEvent}/>                                   
+      <LabelItem name={label['name']} color={label['color']} clickEvent={this.props.clickEvent}/>                                   
     )
     return (
       <div id="labels-container">
@@ -40,12 +67,20 @@ export default class LabelChanger extends React.Component {
     this.state = {modalStatus: ''}
     
     this.showOrHideEvent = this.showOrHideEvent.bind(this);
+    this.submitNewLabel = this.submitNewLabel.bind(this);
   }
   
   showOrHideEvent() {
+    console.log("showorhide")
     this.setState({
       modalStatus: this.state.modalStatus === '' ? 'modal-active': ''
     })
+  }
+
+  // We create a new click function since two operations need to be done once the user clicks the new label
+  submitNewLabel(event) {
+    this.props.changeLabelEvent(event);
+    this.showOrHideEvent();
   }
   
   render() {
@@ -55,9 +90,10 @@ export default class LabelChanger extends React.Component {
         <div className="modal-content">
           
           <div id="label-change-menu">
-            <button onClick={this.showOrHideEvent}>close</button>
+            <CloseBtn clickEvent={this.showOrHideEvent} />
+            <MenuHeader headerText="Choose Label" />
             <CurrentLabel />
-            <LabelsContainer labels={this.props.labels} clickEvent={this.props.changeLabelEvent}/>
+            <LabelsContainer labels={this.props.labels} clickEvent={this.submitNewLabel}/>
           </div>
         </div>
         

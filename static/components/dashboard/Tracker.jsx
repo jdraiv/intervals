@@ -13,7 +13,6 @@ export default class Tracker extends React.Component {
   }
 
   createLabel(name, color, menuResetFunction) {
-    console.log('Creating label')
     fetch('/create_label', {
       method: 'POST',
       body: JSON.stringify({'name': name, 'color': color}),

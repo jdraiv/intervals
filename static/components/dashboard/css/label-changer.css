@@ -1,0 +1,38 @@
+
+
+
+#label-change-header{
+  width: 95%;
+  margin: auto;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  color: var(--text-black);
+  text-align: center;
+  font-size: 0.7em;
+}
+
+#labels-container{
+  width: 95%;
+  margin: auto;
+  margin-bottom: 3%;
+  text-align: center;
+}
+
+.label-item{
+  width: 70%;
+  margin: auto;
+  margin-top: 1%;
+  margin-bottom: 3%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  text-align: center;
+  color: white;
+  font-size: 1.1em;
+  font-weight: bold;
+  border: none;
+  border-radius: 3px;
+}
+
+.label-item:hover{
+  cursor: pointer;
+}
