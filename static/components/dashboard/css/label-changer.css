@@ -1,17 +1,19 @@
 
 #label-change-btn{
+  width: 20vh;
   font-size: 1.2em;
   padding-top: 0.5%;
   padding-bottom: 0.5%;
   padding-left: 2%;
   padding-right: 2%;
+  margin-left: 5%;
   background-color: var(--brand-blue);
   color: white;
   border: none;
   border-radius: 3px;
 }
 
-#label-change-btn{
+#label-change-btn:hover{
   cursor: pointer;
 }
 

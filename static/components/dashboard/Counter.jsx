@@ -1,3 +1,4 @@
+import { throws } from "assert";
 
 /*
 // Keeps track of the seconds 
@@ -58,3 +59,57 @@ export default class TimeController extends React.Component {
   }
 }
 */
+
+export default class Counter extends React.Component {
+  //Props = tracking
+  constructor(props) {
+    super(props);
+    this.state = {seconds: 0, secondsToStr: "00:00:00"}
+
+    this.countSec = this.countSec.bind(this);
+  }
+
+  secondsToText() {
+    function doubleNumbers(num) {
+      return num.toString().length <= 1 ? `0${num}` : num
+    }
+
+    let [hours, minutes, seconds] = [0, 0, 0];
+    let sec = this.state.seconds;
+
+    while (sec > 0) {
+      if (sec > 3600) {
+        sec -= 3600
+        hours += 1
+      }
+      else if (sec > 60 && sec <= 3600) {
+        sec -= 60
+        minutes += 1
+      }
+      else if (sec <= 60) {
+        seconds += sec
+        sec = 0
+      }
+    }
+    return `${doubleNumbers(hours)}:${doubleNumbers(minutes)}:${doubleNumbers(seconds)}`;
+  }
+
+  countSec() {
+    if (this.props.tracking == true) {
+      this.setState(state => ({
+        seconds: state.seconds + 1,
+        secondsToStr: this.secondsToText(state.seconds + 1)
+      }));
+    }
+  }
+
+  componentDidMount() {
+    this.interval = setInterval(() => this.countSec(), 1000)
+  }
+
+  render() {
+    return (
+      <h3 id="tracker-time">{this.state.secondsToStr}</h3>
+    )
+  }
+}

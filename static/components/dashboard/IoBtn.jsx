@@ -6,17 +6,9 @@ export default class OnOffButton extends React.Component {
   
       this.setBtnText = this.setBtnText.bind(this);
     }
-  
+
     setBtnText() {
-      let text;
-  
-      if (this.props.tracking == false) {
-        text = "Start day";
-      } else if (this.props.tracking == true) {
-        text = "End day";
-      }
-  
-      return text;
+      return this.props.tracking == false ? "Start day" : "End day"
     }
   
     render() {

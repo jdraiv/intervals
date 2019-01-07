@@ -1,15 +1,19 @@
 
 import LabelChanger from './LabelChanger.jsx';
 import LabelMaker from './LabelMaker.jsx';
+import Counter from './Counter.jsx';
+import OnOffButton from './IoBtn.jsx';
+
 
 export default class Tracker extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {currentLabel: "Untracked", "labels": []}
+    this.state = {currentLabel: "Untracked", "labels": [], tracking: false}
 
     this.createLabel = this.createLabel.bind(this);
     this.changeLabel = this.changeLabel.bind(this);
     this.getLabels = this.getLabels.bind(this);
+    this.trackerSwitch = this.trackerSwitch.bind(this);
   }
 
   createLabel(name, color, menuResetFunction) {
@@ -45,6 +49,13 @@ export default class Tracker extends React.Component {
       })
   }
 
+  // Starts and stops tracking seconds
+  trackerSwitch() {
+    this.setState({
+      tracking: this.state.tracking == true ? false : true
+    })
+  }
+
   componentWillMount() {
     // Get and set user labels
     this.getLabels();
@@ -59,6 +70,9 @@ export default class Tracker extends React.Component {
         </div>
 
         <div id="timer-container">
+          <Counter tracking={this.state.tracking} />
+          <OnOffButton tracking={this.state.tracking} clickEvent={this.trackerSwitch} />
+          
         </div>
       </div>
     )

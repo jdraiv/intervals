@@ -1,0 +1,28 @@
+
+
+#tracker-time{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2em;
+  margin-left: auto;
+  margin-right: 3%;
+}
+
+#io-btn{
+  width: 20vh;
+  font-size: 1.2em;
+  padding-top: 0.5%;
+  padding-bottom: 0.5%;
+  padding-left: 2%;
+  padding-right: 2%;
+  margin-right: 5%;
+  color: white;
+  background-color: var(--brand-blue);
+  border: none;
+  border-radius: 3px;
+}
+
+#io-btn:hover{
+  cursor: pointer;
+}
