@@ -81,7 +81,6 @@ export default class LabelChanger extends React.Component {
   }
   
   showOrHideEvent() {
-    console.log("showorhide")
     this.setState({
       modalStatus: this.state.modalStatus === '' ? 'modal-active': ''
     })
