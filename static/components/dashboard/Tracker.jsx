@@ -35,8 +35,17 @@ export default class Tracker extends React.Component {
   }
   
   changeLabel(event) {
-    // Save information about the old label, reset timer.   
-    this.setState({currentLabel: event.target.value})
+    // Save information about the old label, reset timer.
+    
+    // End timestamp
+    this.endTimestamp()
+
+    // Set new state and store the new timestamp
+    this.setState({
+      currentLabel: event.target.value
+    }, () => {
+      this.storeTimestamp()
+    })
   }
 
   getLabels() {
@@ -95,6 +104,13 @@ export default class Tracker extends React.Component {
     })
   }
 
+  trackerActive() {
+    // Checks the last timestamp, if less than 24 hours have passed and the last timestamp was not closed,
+    // we keep tracking time.
+
+
+  }
+
   componentWillMount() {
     // Get and set user labels
     this.getLabels();
@@ -109,7 +125,7 @@ export default class Tracker extends React.Component {
         </div>
 
         <div id="timer-container">
-          <Counter tracking={this.state.tracking} />
+          <Counter tracking={this.state.tracking} currentLabel={this.state.currentLabel} />
           <OnOffButton tracking={this.state.tracking} clickEvent={this.trackerSwitch} />
         </div>
       </div>
