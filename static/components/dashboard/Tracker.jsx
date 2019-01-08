@@ -82,7 +82,7 @@ export default class Tracker extends React.Component {
 
   storeTimestamp() {
     fetch('/store_timestamp', {
-      method: 'PUT',
+      method: 'POST',
       body: JSON.stringify({'label': this.state.currentLabel})
     })
     .then((response) => {

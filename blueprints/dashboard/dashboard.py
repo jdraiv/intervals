@@ -15,7 +15,7 @@ from helpers.custom_messages import json_message
 dashboard_module = Blueprint('timestamps_module')
 
 # This route is used to create a new timestamp. It is only used to create the object, it cannot be used to update or add the finished utc timestamp.
-@dashboard_module.route('/store_timestamp', methods=['PUT'])
+@dashboard_module.route('/store_timestamp', methods=['POST'])
 @jwt_required()
 async def store_timestamp(request):
     user_identity = TokenDecoder.decode_jwt(request.cookies.get('intervals_jwt'))['username']
