@@ -8,7 +8,7 @@ import OnOffButton from './IoBtn.jsx';
 export default class Tracker extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {currentLabel: "Untracked", "labels": [], tracking: false}
+    this.state = {currentLabel: "Untracked", "labels": [], tracking: false, initialSeconds: 0, loaded: false}
 
     this.createLabel = this.createLabel.bind(this);
     this.changeLabel = this.changeLabel.bind(this);
@@ -36,15 +36,18 @@ export default class Tracker extends React.Component {
   
   changeLabel(event) {
     // Save information about the old label, reset timer.
-    
-    // End timestamp
-    this.endTimestamp()
+
+    if (this.state.tracking == true) {
+      this.endTimestamp()
+    }
 
     // Set new state and store the new timestamp
     this.setState({
       currentLabel: event.target.value
     }, () => {
-      this.storeTimestamp()
+      if (this.state.tracking == true) {
+        this.storeTimestamp()
+      }
     })
   }
 
@@ -54,7 +57,11 @@ export default class Tracker extends React.Component {
         return response.json()
       })
       .then((data) => {
-        this.setState({labels: data['data']})
+        this.setState({
+          labels: data['data']
+        }, () => {
+          console.log("Labels acquired")
+        })
       })
   }
 
@@ -76,7 +83,7 @@ export default class Tracker extends React.Component {
   storeTimestamp() {
     fetch('/store_timestamp', {
       method: 'PUT',
-      body: JSON.stringify({'label': this.state.currentLabel.toLowerCase()})
+      body: JSON.stringify({'label': this.state.currentLabel})
     })
     .then((response) => {
       return response.json();
@@ -107,13 +114,31 @@ export default class Tracker extends React.Component {
   trackerActive() {
     // Checks the last timestamp, if less than 24 hours have passed and the last timestamp was not closed,
     // we keep tracking time.
-
-
+    fetch('/last_timestamp')
+    .then((response) => {
+      return response.json()
+    })
+    .then((data) => {
+      if (data['data']['expired'] == "false") {
+        // We keep tracking the seconds
+        this.setState({
+          currentLabel: data['data']['label'],
+          tracking: true,
+          initialSeconds: data['data']['elapsed_secs']
+        }, () => {
+        })
+      }
+      console.log(data)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
   }
 
   componentWillMount() {
     // Get and set user labels
     this.getLabels();
+    this.trackerActive();
   }
   
   render() {
@@ -125,7 +150,7 @@ export default class Tracker extends React.Component {
         </div>
 
         <div id="timer-container">
-          <Counter tracking={this.state.tracking} currentLabel={this.state.currentLabel} />
+          <Counter tracking={this.state.tracking} currentLabel={this.state.currentLabel} initialSeconds={this.state.initialSeconds} />
           <OnOffButton tracking={this.state.tracking} clickEvent={this.trackerSwitch} />
         </div>
       </div>

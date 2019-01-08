@@ -27,6 +27,7 @@ async def store_timestamp(request):
         return json_message(status="success", message="Timestamp has been stored")
     return json_message(status="error", message="Unknown error")
 
+
 @dashboard_module.route('/end_timestamp', methods=['POST'])
 @jwt_required()
 async def end_timestamp(request):
@@ -37,6 +38,19 @@ async def end_timestamp(request):
     if process_info['success']:
         return json_message(status="success", message="Updated timestamp")
     return json_message(status="error", message="Unknown error")
+
+
+@dashboard_module.route('/last_timestamp', methods=['GET'])
+@jwt_required()
+async def last_timestamp(request):
+    user_identity = TokenDecoder.decode_jwt(request.cookies.get('intervals_jwt'))['username']
+
+    process_info = TimestampsHelpers.last_timestamp(user_identity)
+
+    if process_info['success']:
+        return json_message(status="success", message="Testing API", data=process_info['data'])
+
+    return json_message(status="error", message=process_info['message'])
 
 
 @dashboard_module.route('/create_label', methods=['POST'])
@@ -53,6 +67,7 @@ async def create_label(request):
         return json_message("success", "Label created")
     else:
         return json_message("error", process_info['message'])
+
 
 @dashboard_module.route('/get_labels', methods=['GET'])
 @jwt_required()

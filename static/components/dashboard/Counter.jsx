@@ -1,12 +1,10 @@
 
 
 export default class Counter extends React.Component {
-  //Props = tracking, currentLabel
+  //Props = tracking, currentLabel, initialSeconds
   constructor(props) {
     super(props);
-    this.state = {seconds: 0, secondsToStr: "00:00:00", label: ""}
-
-    this.countSec = this.countSec.bind(this);
+    this.state = {seconds: 0, secondsToStr: "00:00:00", label: "", loaded: false}
   }
 
   secondsToText() {
@@ -35,21 +33,29 @@ export default class Counter extends React.Component {
   }
 
   countSec() {
-    if (this.props.tracking == true) {
-      if (this.props.currentLabel != this.state.label) {
-        this.setState({
-          seconds: 0,
-          secondsToStr: this.secondsToText(0),
-          label: this.props.currentLabel
-        })
-      }
-      else {
-        this.setState(state => ({
-          seconds: state.seconds + 1,
-          secondsToStr: this.secondsToText(state.seconds + 1)
-        }));
-      }
-    }
+   if (this.props.tracking == true) {
+     if (this.props.initialSeconds > 0 && this.state.loaded == false) {
+       this.setState({
+         label: this.props.currentLabel,
+         seconds: this.props.initialSeconds,
+         secondsToStr: this.secondsToText(this.props.initialSeconds),
+         loaded: true
+       })
+     } 
+     else if (this.props.currentLabel != this.state.label) {
+       this.setState({
+         seconds: 0,
+         secondsToStr: this.secondsToText(),
+         label: this.props.currentLabel
+       })
+     }
+     else {
+       this.setState(state => ({
+         seconds: state.seconds + 1,
+         secondsToStr: this.secondsToText(state.seconds + 1)
+       }));
+     }
+   }
   }
 
   componentDidMount() {
@@ -57,8 +63,11 @@ export default class Counter extends React.Component {
   }
 
   componentWillMount() {
-    this.setState({label: this.props.currentLabel})
-
+    this.setState({
+      label: this.props.currentLabel, 
+      seconds: this.props.initialSeconds, 
+      secondsToStr: this.secondsToText(this.props.initialSeconds)
+    })
   }
 
   render() {
