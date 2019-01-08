@@ -51,8 +51,47 @@ export default class Tracker extends React.Component {
 
   // Starts and stops tracking seconds
   trackerSwitch() {
+    // Store the the timestamp on the database
+
+    if (this.state.tracking == true) {
+      this.endTimestamp()
+    } else {
+      this.storeTimestamp();
+    }
+
     this.setState({
       tracking: this.state.tracking == true ? false : true
+    })
+  }
+
+  storeTimestamp() {
+    fetch('/store_timestamp', {
+      method: 'PUT',
+      body: JSON.stringify({'label': this.state.currentLabel.toLowerCase()})
+    })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }
+
+  endTimestamp() {
+    fetch('/end_timestamp', {
+      method: 'POST',
+    })
+    .then((response) => {
+      return response.json()
+    })
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((err) => {
+      console.log(err)
     })
   }
 
@@ -72,7 +111,6 @@ export default class Tracker extends React.Component {
         <div id="timer-container">
           <Counter tracking={this.state.tracking} />
           <OnOffButton tracking={this.state.tracking} clickEvent={this.trackerSwitch} />
-          
         </div>
       </div>
     )
