@@ -15,14 +15,13 @@ class TimestampsHelpers:
             timestamp_data = {
                 'label': label,
                 'created': {
-                    'month': today.month,
                     'day': today.day,
                     'utc': time.time()
                 },
                 'stopped': ""
                 }
 
-            mongo_db.users.update({"username": user_id}, {"$push": {"timestamps.%s" % today.year: timestamp_data}})
+            mongo_db.users.update({"username": user_id}, {"$push": {"timestamps.%s.%s" % (today.year, today.month): timestamp_data}})
             return internal_message(success=True, message='Timestamp stored')
         return internal_message(success=False, message='None')
     
@@ -34,7 +33,7 @@ class TimestampsHelpers:
         if user_col != None:
             timestamps_list = user_col['timestamps']
 
-            mongo_db.users.update({"username": user_id}, {"$set": {"timestamps.%s.%s.stopped" % (today.year, len(timestamps_list[str(today.year)]) - 1): time.time()}})
+            mongo_db.users.update({"username": user_id}, {"$set": {"timestamps.%s.%s.%s.stopped" % (today.year, today.month, len(timestamps_list[str(today.year)]) - 1): time.time()}})
             return internal_message(success=True, message="Updated timestamp")
         return internal_message(success=False, message="None")
 
@@ -46,7 +45,7 @@ class TimestampsHelpers:
 
         if user_col != None:
             try:
-                timestamps = user_col['timestamps'][str(today.year)]
+                timestamps = user_col['timestamps'][str(today.year)][str(today.month)]
                 last_timestamp = timestamps[len(timestamps) - 1]
 
                 if last_timestamp['stopped'] == "":
