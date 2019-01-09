@@ -9,6 +9,7 @@ from blueprints.authentication.helpers.token_decoder import TokenDecoder
 
 from .helpers.labels import LabelsHelpers
 from .helpers.timestamps import TimestampsHelpers
+from .helpers.charts import ChartsHelpers
 from helpers.custom_messages import json_message
 
 
@@ -80,5 +81,13 @@ async def get_labels(request):
         return json_message(status="success", data=process_info['data'])
     else:
         return json_message(status="error", message="Unknown error")
+
+
+""" CHARTS """
+@dashboard_module.route('/daily_data', methods=['GET'])
+@jwt_required()
+async def get_daily_data(request):
+    process_info = ChartsHelpers.daily_data()
+    pass
 
 
