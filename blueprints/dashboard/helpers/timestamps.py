@@ -46,6 +46,7 @@ class TimestampsHelpers:
             try:
                 timestamps = user_col['timestamps'][str(today.year)][str(today.month)][str(today.day)]
                 last_timestamp = timestamps[len(timestamps) - 1]
+                print(last_timestamp)
 
                 if last_timestamp['stopped'] == "":
                     # Get total elapsed seconds
@@ -61,5 +62,14 @@ class TimestampsHelpers:
                             'elapsed_secs': elapsed_secs,
                             'label': last_timestamp['label']
                         })
+                # If the timestamp was stopped
+                else:
+                    return internal_message(
+                        success=True, 
+                        message="Timestamp was ended", 
+                        data={
+                            'expired': "true"
+                        })
+
             except:
                 return internal_message(success=False, message="No timestamps data")

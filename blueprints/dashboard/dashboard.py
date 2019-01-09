@@ -49,7 +49,7 @@ async def last_timestamp(request):
     process_info = TimestampsHelpers.last_timestamp(user_identity)
 
     if process_info['success']:
-        return json_message(status="success", message="Testing API", data=process_info['data'])
+        return json_message(status="success", message="Successful API call", data=process_info['data'])
 
     return json_message(status="error", message=process_info['message'])
 
@@ -87,7 +87,10 @@ async def get_labels(request):
 @dashboard_module.route('/daily_data', methods=['GET'])
 @jwt_required()
 async def get_daily_data(request):
-    process_info = ChartsHelpers.daily_data()
-    pass
+    process_info = ChartsHelpers.daily_data('Jdraiv')
+
+    if process_info['success']:
+        return json_message(status="success", message=process_info['message'], data=process_info['data'])
+    return json_message(status="error")
 
 
