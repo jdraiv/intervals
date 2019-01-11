@@ -1,21 +1,23 @@
 
+
 #label-change-btn{
-  width: 20vh;
-  font-size: 1.2em;
-  padding-top: 0.5%;
-  padding-bottom: 0.5%;
-  padding-left: 2%;
-  padding-right: 2%;
-  margin-left: 5%;
+  width: 30%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  margin-left: 3%;
   background-color: var(--brand-blue);
   color: white;
   border: none;
   border-radius: 3px;
+  font-size: 1.2em;
 }
 
 #label-change-btn:hover{
   cursor: pointer;
+  background-color: var(--shadow-blue);
 }
+
+/* Internal Menu CSS */
 
 #label-change-header{
   width: 95%;
@@ -51,4 +53,10 @@
 
 .label-item:hover{
   cursor: pointer;
+}
+
+@media (max-width: 800px) {
+  #label-change-btn{
+    width: 50%;
+  }
 }

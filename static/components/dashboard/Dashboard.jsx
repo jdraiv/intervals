@@ -179,15 +179,17 @@ class Dashboard extends React.Component {
         <Navbar />
       </div>,
       <div id="right-box">
-        <div id="label-menus">
-          <LabelChanger currentLabel={this.state.currentLabel} labels={this.state.labels} changeLabelEvent={this.changeLabel}/>
-          <LabelMaker createEvent={this.createLabel}/>
-        
-        </div>
 
-        <div id="tracker">
-          <Counter seconds={this.state.seconds} />
-          <OnOffButton tracking={this.state.tracking} clickEvent={this.trackerSwitch} />
+        <div className="toolbox">
+          <div id="labels-menus">
+            <LabelChanger currentLabel={this.state.currentLabel} labels={this.state.labels} changeLabelEvent={this.changeLabel}/>
+            <LabelMaker createEvent={this.createLabel}/>
+          </div>
+
+          <div id="tracker">
+            <Counter seconds={this.state.seconds} />
+            <OnOffButton tracking={this.state.tracking} clickEvent={this.trackerSwitch} />
+          </div>
         </div>
       </div>
     ]

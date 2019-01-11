@@ -1,18 +1,15 @@
 
 #label-maker-btn{
-  margin-left: 5%;
-  font-size: 1.3em;
-  font-family: var(--main-font);
-  background-color: white;
+  background-color: transparent;
   color: var(--text-grey);
-  font-weight: bold;
-  letter-spacing: 1px;
   border: none;
+  margin-left: 3%;
+  font-size: 1.2em;
 }
 
 #label-maker-btn:hover{
-  cursor: pointer;
   color: var(--brand-blue);
+  cursor: pointer;
 }
 
 #close-btn-container{

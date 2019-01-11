@@ -27,6 +27,30 @@ body{
   background-color: var(--background-blue);
 }
 
+.toolbox{
+  display: flex;
+  align-items: center;
+  width: 90%;
+  margin: auto;
+  margin-top: 2%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  background-color: white;
+}
+
+#labels-menus{
+  display: flex;
+  width: 50%;
+  height: 100%;
+}
+
+#tracker{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 50%;
+  height: 100%;
+}
 /* Modals CSS */
 
 .modal{
