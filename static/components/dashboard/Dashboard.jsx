@@ -63,11 +63,27 @@ class Dashboard extends React.Component {
   }
 
   changeLabel(name, color) {
+    
+    /* 
+    If the application is currently tracking a label, that current label needs to be finished
+    and the new label needs to be stored
+    */
+    if (this.state.tracking == true) {
+      // End old timestamp
+      this.endTimestamp()
+    }
+
+    // Setting up the new timestamp information
     this.setState({
       currentLabel: name,
-      currentColor: color
+      currentColor: color,
+      seconds: 0
     }, () => {
       console.log("Label has been changed, new label:", this.state.currentLabel, this.state.currentColor)
+
+      if (this.state.tracking == true) {
+        this.storeTimestamp()
+      }
     })
   }
 
