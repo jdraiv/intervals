@@ -41,7 +41,7 @@ class LabelItem extends React.Component {
     }
     return (
       <div>
-        <button className="label-item" value={this.props.name} style={style} onClick={this.props.clickEvent}>{this.props.name}</button>
+        <button className="label-item" id={this.props.color}  value={this.props.name} style={style} onClick={this.props.clickEvent}>{this.props.name}</button>
       </div>
     )
   }
@@ -51,21 +51,12 @@ class LabelsContainer extends React.Component {
   // Props = labels, clickEvent, 
   render() {
     let labels = this.props.labels.map((label) =>
-      <LabelItem name={label['name']} color={label['color']} clickEvent={this.props.clickEvent}/>                                   
+      <LabelItem name={label['name']} color={label['color']} clickEvent={this.props.clickEvent}/>           
     )
     return (
       <div id="labels-container">
         {labels}
       </div>                                                                        
-    )
-  }
-}
-
-class CurrentLabel extends React.Component {
-  // Props = currentLabel
-  render() {
-    return (
-      <h4>{this.props.currentLabel}</h4>
     )
   }
 }
@@ -88,7 +79,7 @@ export default class LabelChanger extends React.Component {
 
   // We create a new click function since two operations need to be done once the user clicks the new label
   submitNewLabel(event) {
-    this.props.changeLabelEvent(event);
+    this.props.changeLabelEvent(event.target.value, event.target.id);
     this.showOrHideEvent();
   }
   
@@ -101,7 +92,6 @@ export default class LabelChanger extends React.Component {
           <div id="label-change-menu">
             <CloseBtn clickEvent={this.showOrHideEvent} />
             <MenuHeader headerText="Choose Label" />
-            <CurrentLabel />
             <LabelsContainer labels={this.props.labels} clickEvent={this.submitNewLabel}/>
           </div>
         </div>

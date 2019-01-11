@@ -1,19 +1,18 @@
 
 
 export default class Counter extends React.Component {
-  //Props = tracking, currentLabel, initialSeconds
+  //Props = seconds
   constructor(props) {
     super(props);
-    this.state = {seconds: 0, secondsToStr: "00:00:00", label: "", loaded: false}
   }
 
-  secondsToText() {
+  secondsToText(num) {
     function doubleNumbers(num) {
       return num.toString().length <= 1 ? `0${num}` : num
     }
 
     let [hours, minutes, seconds] = [0, 0, 0];
-    let sec = this.state.seconds;
+    let sec = num;
 
     while (sec > 0) {
       if (sec > 3600) {
@@ -32,47 +31,10 @@ export default class Counter extends React.Component {
     return `${doubleNumbers(hours)}:${doubleNumbers(minutes)}:${doubleNumbers(seconds)}`;
   }
 
-  countSec() {
-   if (this.props.tracking == true) {
-     if (this.props.initialSeconds > 0 && this.state.loaded == false) {
-       this.setState({
-         label: this.props.currentLabel,
-         seconds: this.props.initialSeconds,
-         secondsToStr: this.secondsToText(this.props.initialSeconds),
-         loaded: true
-       })
-     } 
-     else if (this.props.currentLabel != this.state.label) {
-       this.setState({
-         seconds: 0,
-         secondsToStr: this.secondsToText(),
-         label: this.props.currentLabel
-       })
-     }
-     else {
-       this.setState(state => ({
-         seconds: state.seconds + 1,
-         secondsToStr: this.secondsToText(state.seconds + 1)
-       }));
-     }
-   }
-  }
-
-  componentDidMount() {
-    this.interval = setInterval(() => this.countSec(), 1000)
-  }
-
-  componentWillMount() {
-    this.setState({
-      label: this.props.currentLabel, 
-      seconds: this.props.initialSeconds, 
-      secondsToStr: this.secondsToText(this.props.initialSeconds)
-    })
-  }
-
   render() {
+    let secondsToStr = this.secondsToText(this.props.seconds)
     return (
-      <h3 id="tracker-time">{this.state.secondsToStr}</h3>
+      <h3 id="tracker-time">{secondsToStr}</h3>
     )
   }
 }

@@ -6,7 +6,7 @@ import time
 
 class TimestampsHelpers:
     @staticmethod
-    def store_timestamp(user_id, label):
+    def store_timestamp(user_id, label, color):
         user_col = mongo_db.users.find_one({'username': user_id})
         today = datetime.today()
 
@@ -14,6 +14,7 @@ class TimestampsHelpers:
             timestamps_list = user_col['timestamps']
             timestamp_data = {
                 'label': label,
+                'color': color,
                 'created': {
                     'utc': time.time()
                 },
@@ -46,7 +47,6 @@ class TimestampsHelpers:
             try:
                 timestamps = user_col['timestamps'][str(today.year)][str(today.month)][str(today.day)]
                 last_timestamp = timestamps[len(timestamps) - 1]
-                print(last_timestamp)
 
                 if last_timestamp['stopped'] == "":
                     # Get total elapsed seconds
@@ -60,7 +60,8 @@ class TimestampsHelpers:
                         data={
                             'expired': expired,
                             'elapsed_secs': elapsed_secs,
-                            'label': last_timestamp['label']
+                            'label': last_timestamp['label'],
+                            'color': last_timestamp['color']
                         })
                 # If the timestamp was stopped
                 else:

@@ -4,7 +4,7 @@ import LabelMaker from './LabelMaker.jsx';
 import Counter from './Counter.jsx';
 import OnOffButton from './IoBtn.jsx';
 
-
+/*
 export default class Tracker extends React.Component {
   constructor(props) {
     super(props);
@@ -81,9 +81,10 @@ export default class Tracker extends React.Component {
   }
 
   storeTimestamp() {
+    console.log(this.state.labels)
     fetch('/store_timestamp', {
       method: 'POST',
-      body: JSON.stringify({'label': this.state.currentLabel})
+      body: JSON.stringify({'label': this.state.currentLabel, 'color': this.state.labels[this.state.currentLabel]['color']})
     })
     .then((response) => {
       return response.json();
@@ -157,3 +158,7 @@ export default class Tracker extends React.Component {
     )
   }
 }
+
+*/
+
+

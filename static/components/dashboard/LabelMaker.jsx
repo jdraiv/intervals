@@ -104,14 +104,12 @@ export default class LabelMaker extends React.Component {
     this.changeColorEvent = this.changeColorEvent.bind(this);
     this.showOrHideEvent = this.showOrHideEvent.bind(this);
     this.internalClickEvent = this.internalClickEvent.bind(this);
+    this.finalClickEvent = this.finalClickEvent.bind(this);
   }
   
   inputChange(event) {
-    const target = event.target;
-    const name = target.name
-    
     this.setState({
-      [name]: target.value
+      name: event.target.value
     })
   }
   
@@ -129,6 +127,12 @@ export default class LabelMaker extends React.Component {
       modalStatus: this.state.modalStatus === '' ? 'modal-active': ''
     })
   }
+
+  // Creatig a new click event to execute a process inside the parent component and this component
+  finalClickEvent() {
+    this.props.createEvent(this.state.name, this.state.color);
+    this.internalClickEvent()
+  }
   
   render() {
     return [
@@ -143,7 +147,7 @@ export default class LabelMaker extends React.Component {
             <ColorNameInput inputValue={this.state.name} changeEvent={this.inputChange}/>
             
             <ColorsContainer clickEvent={this.changeColorEvent} currentColor={this.state.color} />
-            <CreateBtn clickEvent={this.props.createEvent.bind(this, this.state.name, this.state.color, this.internalClickEvent.bind(this))} inputValue={this.state.name} />
+            <CreateBtn inputValue={this.state.name} clickEvent={this.finalClickEvent} />
           </div>
         </div>
       </div>

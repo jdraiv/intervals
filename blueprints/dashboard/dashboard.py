@@ -21,8 +21,9 @@ dashboard_module = Blueprint('timestamps_module')
 async def store_timestamp(request):
     user_identity = TokenDecoder.decode_jwt(request.cookies.get('intervals_jwt'))['username']
     label = request.json.get('label')
+    color = request.json.get('color')
 
-    process_info = TimestampsHelpers.store_timestamp(user_identity, label)
+    process_info = TimestampsHelpers.store_timestamp(user_identity, label, color)
 
     if process_info['success']:
         return json_message(status="success", message="Timestamp has been stored")
