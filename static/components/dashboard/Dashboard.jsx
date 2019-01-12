@@ -3,6 +3,7 @@ import LabelChanger from './LabelChanger.jsx';
 import LabelMaker from './LabelMaker.jsx'
 import Counter from './Counter.jsx';
 import OnOffButton from './IoBtn.jsx';
+import PieChart from './charts/PieChart.jsx';
 import Navbar from './Navbar.jsx'
 
 
@@ -190,6 +191,11 @@ class Dashboard extends React.Component {
             <Counter seconds={this.state.seconds} />
             <OnOffButton tracking={this.state.tracking} clickEvent={this.trackerSwitch} />
           </div>
+        </div>
+
+        <div id="charts-container">
+          <PieChart />
+
         </div>
       </div>
     ]

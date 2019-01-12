@@ -86,7 +86,6 @@ async def get_labels(request):
 
 """ CHARTS """
 @dashboard_module.route('/daily_data', methods=['GET'])
-@jwt_required()
 async def get_daily_data(request):
     process_info = ChartsHelpers.daily_data('Jdraiv')
 
