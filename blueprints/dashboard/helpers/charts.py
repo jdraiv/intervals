@@ -33,12 +33,17 @@ class ChartsHelpers:
                     timestamp_seconds += time.time() - timestamp['created']['utc']
                 else:
                     timestamp_seconds += timestamp['stopped'] - timestamp['created']['utc']
-                
-                timestamps_data.append({
-                    'name': timestamp['label'],
-                    'color': timestamp['color'],
-                    'value': int(round((timestamp_seconds / total_seconds) * 100))
-                })
+
+                if not any(t['name'] == timestamp['label'] for t in timestamps_data):
+                    timestamps_data.append({
+                        'name': timestamp['label'],
+                        'color': timestamp['color'],
+                        'value': int(round((timestamp_seconds / total_seconds) * 100))
+                    })
+                else:
+                    for t in timestamps_data:
+                        if t['name'] == timestamp['label']:
+                            t['value'] += int(round((timestamp_seconds / total_seconds) * 100))
             return internal_message(
                 success=True, 
                 message="Data retrieved", 

@@ -3,7 +3,8 @@ import LabelChanger from './LabelChanger.jsx';
 import LabelMaker from './LabelMaker.jsx'
 import Counter from './Counter.jsx';
 import OnOffButton from './IoBtn.jsx';
-import PieChart from './charts/PieChart.jsx';
+import DailyChart from './charts/DailyChart.jsx';
+import CalendarChart from './charts/CalendarChart.jsx';
 import Navbar from './Navbar.jsx'
 
 
@@ -194,7 +195,8 @@ class Dashboard extends React.Component {
         </div>
 
         <div id="charts-container">
-          <PieChart />
+          <CalendarChart />
+          <DailyChart />
 
         </div>
       </div>

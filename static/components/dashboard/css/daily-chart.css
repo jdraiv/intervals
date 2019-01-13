@@ -1,0 +1,58 @@
+
+
+#daily-chart{
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  background-color: white;
+}
+
+#daily-data-header{
+  text-align: center;
+  font-size: 2em;
+  color: var(--text-black);
+  font-weight: bold;
+}
+
+#daily-chart .chart-container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.chart-items-container{
+  width: 40%;
+  margin-top: 5%;
+}
+
+.chart-item{
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+  margin-top: 5%;
+}
+
+.chart-item-bullet{
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.chart-item-text{
+  font-size: 1em;
+  color: var(--text-black);
+}
+
+.pie-chart{
+  text-align: center;
+  width: 60%;
+  height: 50%;
+}
+
+.pie-chart canvas{
+  padding-left: 0;
+  padding-right: 0;
+}
